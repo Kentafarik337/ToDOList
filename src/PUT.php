@@ -12,7 +12,7 @@ if ($stmtCheck->rowCount() == 0) {
     echo json_encode(['error' => 'No task found with the provided ID']);
     exit;
 }
-if ($request['title']!='' && strlen($request['title']<255)) {
+if ($request['title']!='' && strlen($request['title'])<255) {
     $updates[] = "title = :title";
     $params[':title'] = $request['title'];
 }
