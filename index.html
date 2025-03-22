@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h3>Add new Task</h3>
+    <form id="AddNewTask">
+        <p>ID</p>
+        <input type="number" id="id">
+        <p>Title</p>
+        <input type="text" id="title">
+        <p>Description</p>
+        <textarea id="description"></textarea>
+        <p>Status</p>
+        <input type="number" id="status"> <br> <br>
+        <button type="submit" value="add">Add new task</button>
+        <button type="submit" value="update">Update task</button>
+        <button type="submit" value="find">Find task</button>
+        <button type="submit" value="delete">Delete task</button>
+        <button type="submit" value="findall">Find all</button>
+    </form> 
+    <br> <br>
+    <div id='output'></div>
+    <script>
+        document.getElementById('AddNewTask').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = {
+                id: document.getElementById('id').value,
+                title: document.getElementById('title').value,
+                description: document.getElementById('description').value,
+                status: document.getElementById('status').value
+            };
+            const action = event.submitter.value;
+            let url;
+            switch (action) {
+                case 'add':
+                    url = '/src/POST.php';
+                    break;
+                case 'update':
+                    url = '/src/PUT.php';
+                    break;
+                case 'find':
+                    url = '/src/GETID.php';
+                    break;
+                case 'delete':
+                    url = '/src/DELETE.php';
+                    break;
+                case 'findall':
+                    url = '/src/GET.php';
+                    break;
+            }
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error('Error:', data.error);
+                } else {
+                    console.log('Success:', data);
+                    if (action === 'findall' || action === 'find') {
+                        dTasks(data);
+                    }
+                }
+            })
+        });
+        function dTasks(tasks) {
+            const output = document.getElementById('output');
+            output.innerHTML = '<h3>Tasks</h3>';
+            tasks.forEach(task => {
+                output.innerHTML += `<p>ID: ${task.id}, Title: ${task.title}, Description: ${task.description}, Status: ${task.status}</p>`;
+            });
+        }
+    </script>
+</body>
+</html>
