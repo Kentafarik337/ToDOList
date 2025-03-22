@@ -51,27 +51,25 @@
                     break;
             }
             try {
-            const response = await fetch(url, {
+                const response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
-            });
-
-            const data = await response.json();
-
-            if (data.error) {
-                console.error('Error:', data.error);
-            } else {
-                console.log('Success:', data);
-                if (button === 'findall' || button === 'find') {
-                    dTasks(data);
+                });
+                const data = await response.json();
+                if (data.error) {
+                    console.error('Error:', data.error);
+                } else {
+                    console.log('Success:', data);
+                    if (button === 'findall' || button === 'find') {
+                        dTasks(data);
+                    }
                 }
-            }
             } catch (error) {
-            console.error('Database eerror:', error);
-        }
+                console.error('Database eerror:', error);
+            }
         });
         function dTasks(tasks) {
             const output = document.getElementById('output');
