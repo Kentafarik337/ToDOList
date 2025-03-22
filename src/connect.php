@@ -1,6 +1,6 @@
 <?php
 
-$host ='localhost';
+$host ='MySQL-8.2';
 $dbname ='pdo';
 $username ='root';
 $password = '1111111';
