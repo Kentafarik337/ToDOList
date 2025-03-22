@@ -22,18 +22,18 @@
 <h3>Add new Task</h3>
     <form id="AddNewTask">
         <p>ID</p>
-        <input type="number" name="id" id="id">
+        <input type="number" id="id">
         <p>Title</p>
-        <input type="text" name="title" id="title">
+        <input type="text" id="title">
         <p>Description</p>
-        <textarea name="description" id="description"></textarea>
+        <textarea id="description"></textarea>
         <p>Status</p>
-        <input type="number" name="status" id="status"> <br> <br>
-        <button type="submit" name="action" value="add">Add new task</button>
-        <button type="submit" name="action" value="update">Update task</button>
-        <button type="submit" name="action" value="find">Find task</button>
-        <button type="submit" name="action" value="delete">Delete task</button>
-        <button type="submit" name="action" value="findall">Find all</button>
+        <input type="number" id="status"> <br> <br>
+        <button type="submit" value="add">Add new task</button>
+        <button type="submit" value="update">Update task</button>
+        <button type="submit" value="find">Find task</button>
+        <button type="submit" value="delete">Delete task</button>
+        <button type="submit" value="findall">Find all</button>
     </form> 
     <br> <br>
     <div id='output'></div>
@@ -95,14 +95,14 @@
         });
         function displayAllTasks(tasks) {
         const output = document.getElementById('output');
-        output.innerHTML = '<h2>All Tasks</h2>';
+        output.innerHTML = '<h3>All Tasks</h3>';
         tasks.forEach(task => {
             output.innerHTML += `<p>ID: ${task.id}, Title: ${task.title}, Description: ${task.description}, Status: ${task.status}</p>`;
         });
     }
     function displayTask(task) {
         const output = document.getElementById('output');
-        output.innerHTML = `<h2>Task Details</h2>
+        output.innerHTML = `<h3>Task Details</h3>
                             <p>ID: ${task.id}</p>
                             <p>Title: ${task.title}</p>
                             <p>Description: ${task.description}</p>
