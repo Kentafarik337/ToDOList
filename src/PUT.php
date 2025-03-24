@@ -16,8 +16,10 @@ if ($request['title']!='' && strlen($request['title'])<255) {
     $updates[] = "title = :title";
     $params[':title'] = $request['title'];
 }
-$updates[] = "description = :description";
-$params[':description'] = $request['description'];
+if ($request['description']!='') {
+    $updates[] = "description = :description";
+    $params[':description'] = $request['description'];
+}
 if ($request['status']!='') {
     $updates[] = "status = :status";
     $params[':status'] = $request['status'];
