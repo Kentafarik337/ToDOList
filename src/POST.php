@@ -13,7 +13,7 @@ if ($status == '')
     echo json_encode(array("error" => "Status must be 0 or 1"));
     exit;
 }
-if (strlen($title)>255)
+if (strlen($title)>255 || $title === '')
 {
     echo json_encode(array("error" => "Title"));
     exit;
